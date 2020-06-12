@@ -1,0 +1,416 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VJ Sticks</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.2.13/semantic.min.css">
+
+    <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+<body style="background-color: rgb(25,25,25);color: rgb(255,255,255);">
+
+<div id="app">
+
+    <!--   Start Screen-->
+    <div class="col text-center" v-if="this.state.localeCompare('start') === 0">
+        <div class="container">
+            <h2 class="text-center" style="padding: 11px;margin: 4px;color: rgb(255,255,255);">Connect a screen</h2>
+        </div>
+        <div class="container">
+            <div class="row">
+                <div class="col-auto"><i class="fa fa-info d-flex align-items-center"
+                                         style="margin: 0px;margin-top: 16px;color: rgb(255,255,255);"></i></div>
+                <div class="col">
+                    <p class="text-left" style="color: rgb(251,253,255);">Open https://bit.ly/2zBbG7R on a
+                        Desktop/Tablet to set up your console.</p>
+                </div>
+            </div>
+        </div>
+        <div class="container" style="margin-top: 13px;">
+            <div class="row">
+                <div class="col-auto" style="margin-top: 16px;"><i class="fa fa-info d-flex align-items-center"
+                                                                   style="margin-top: 0;color: rgb(255,255,255);"></i>
+                </div>
+                <div class="col">
+                    <p class="text-left d-flex justify-content-center align-items-center"
+                       style="color: rgb(255,255,255);">Enter the Lobby ID Displayed On The Start Screen.</p>
+                </div>
+            </div>
+        </div>
+        <button class="btn btn-primary text-center" type="button"
+                style="max-width: 400;width: 405;background-color: #3a5f87;margin: 0;margin-top: 45px;margin-left: 0;"
+                v-on:click="gotoEnterCode">I&#39;ve
+            got the code, let me in.<i class="fa fa-chevron-right" style="margin-left: 11px;"></i></button>
+    </div>
+
+    <!--    Join Game Screen-->
+
+    <div class="col text-center" v-if="this.state.localeCompare('enter code') === 0">
+        <i class="fa fa-desktop" style="font-size: 72px;margin-top: 25px;"></i>
+        <p style="margin-top: 12px;">Open https://bit.ly/2zBbG7R on a Desktop/Tablet to set up your console</p><input
+            class="form-control-lg" type="text" required="" name="Code" placeholder="Enter Code"
+            style="background-color: rgba(255,255,255,0.02);margin-top: 32px;color: rgba(255,255,255, 1);"
+            v-model="lobbyCode">
+        <button class="btn btn-primary"
+                type="button" style="margin-top: 90px;width: 195px;background-color: rgb(63,99,137);"
+                v-on:click="joinGame">Join Game
+        </button>
+        <h5 style="margin-top: 66px;color: rgba(183,49,49,0.91);"> {{errorMessage}} </h5>
+
+    </div>
+
+
+    <!--    Main Menu Screen-->
+    <div class="col align-self-start" v-if="this.state.localeCompare('menu') === 0">
+        <p class="text-center" style="font-size: 22px;margin-top: 23px;">Player ID: {{myId}}</p>
+        <div class="row"
+             style="margin-top: 197px;width: 359px;margin-left: 0px;background-color: transparent;margin-right: 0;">
+            <div class="col d-flex justify-content-end align-items-center" v-on:click="buttonLeft"
+                 style="padding: 0px;">
+                <button class="btn btn-primary btn-block shadow" type="button"
+                        style="margin-top: 0px;height: 63px;color: rgb(255,255,255);background-color: rgb(255,255,255);">
+                    <i class="fa fa-caret-left" style="font-size: 34px;color: #26abab;"></i></button>
+            </div>
+            <div
+                    class="col">
+                <button class="btn btn-primary btn-block shadow" type="button" v-on:click="buttonUp"
+                        style="height: 64px;background-color: rgb(255,255,255);margin-bottom: 10px;"><i
+                        class="fa fa-caret-up" style="font-size: 34px;color: #26abab;"></i></button>
+                <button class="btn btn-primary btn-block shadow" v-on:click="buttonA"
+                        type="button" style="margin-top: 2px;height: 75px;background-color: #26abab;"><i
+                        class="fa fa-circle" style="font-size: 42px;"></i></button>
+                <button class="btn btn-primary btn-block shadow" v-on:click="buttonDown" type="button"
+                        style="margin-top: 10px;height: 63px;background-color: rgb(255,255,255);"><i
+                        class="fa fa-caret-down" style="color: #26abab;font-size: 34px;"></i></button>
+            </div>
+            <div
+                    class="col d-flex justify-content-end align-items-center" style="padding: 0px;">
+                <button class="btn btn-primary btn-block shadow" v-on:click="buttonRight" type="button"
+                        style="margin-top: 0px;height: 63px;color: rgb(255,255,255);background-color: rgb(255,255,255);">
+                    <i class="fa fa-caret-right" style="font-size: 34px;color: #26abab;"></i></button>
+            </div>
+        </div>
+        <div class="container">
+            <button class="btn btn-primary shadow" type="button" v-on:click="buttonB"
+                    style="margin-top: 36px;height: 63px;background-color: rgb(255,255,255);width: 100px;"><i
+                    class="fa fa-arrow-left" style="font-size: 34px;color: #26abab;"></i></button>
+        </div>
+    </div>
+
+    <!--    Game Screen Screen-->
+    <div class="col" style="margin-top: 14px;" v-if="this.state.localeCompare('game') === 0">
+        <div class="container" style="background-color: #3d6981;border-radius: 10px;">
+            <h2 class="text-center" style="padding: 12px;">P{{playerNumber}} | ({{playerName}})</h2>
+        </div>
+        <div class="container"
+             style="background-color: #de3333;padding-top: 5px;padding-bottom: 15px;border-radius: 20px;margin-top: 28px;">
+            <h4 class="text-center" style="background-color: rgba(234,88,88,0);margin-top: 33px;padding: 0px;"><strong>TAP
+                THE LEFT AND RIGHT BUTTONS TO RUN</strong></h4>
+        </div>
+        <button class="btn btn-primary btn-lg" v-on:click="showQuitModal = true" type="button"
+                style="height: 110px;border-radius: 20px;width: 110px;background-color: #ffffff;margin-top: 26px;"><i
+                class="fa fa-caret-square-o-left" style="font-size: 45px;color: rgb(222,51,51);"></i></button>
+        <div
+                class="row justify-content-between" style="margin-top: 129px;">
+            <div class="col text-center">
+                <button class="btn btn-primary btn-block btn-lg" type="button" v-on:click="buttonX"
+                        style="height: 131px;border-radius: 30px;background-color: rgb(255,255,255);"><i
+                        class="fa fa-flash" style="font-size: 57px;color: rgb(61,105,129);"></i></button>
+            </div>
+            <div class="col text-center">
+                <button class="btn btn-primary btn-block" type="button" v-on:click="buttonY"
+                        style="height: 131px;border-radius: 30px;background-color: rgb(255,255,255);"><i
+                        class="fa fa-flash" style="font-size: 57px;color: rgb(61,105,129);"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!--    End Game Screen-->
+
+    <div class="col" style="margin-top: 33px;" v-if="this.state.localeCompare('end') === 0">
+        <h1 class="text-center" style="margin-top: 0px;">Race Finished</h1>
+        <div class="row justify-content-between" style="margin-top: 179px;">
+            <div class="col text-center">
+                <button class="btn btn-primary btn-block btn-lg" type="button" v-on:click="quit"
+                        style="font-size: 26px;height: 96px;background-color: rgb(231,47,47);color: rgb(255,255,255);">
+                    <strong>Quit</strong></button>
+            </div>
+            <div class="col">
+                <button class="btn btn-primary btn-block btn-lg" type="button" v-on:click="replay"
+                        style="font-size: 26px;height: 96px;background-color: rgb(255,255,255);color: rgb(65,100,152);">
+                    <strong>Replay</strong></button>
+            </div>
+        </div>
+    </div>
+
+    <!--    Quit Modal-->
+
+    <div role="dialog" tabindex="-1" class="modal fade show" style="display: block; padding: 10px;"
+         v-if="showQuitModal === true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center d-flex">
+                    <h4 class="modal-title d-flex" style="color: rgb(173,42,42);">Quit?</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            v-on:click="showQuitModal = false"><span
+                            aria-hidden="true">×</span></button>
+                </div>
+                <div class="modal-body">
+                    <p class="d-flex justify-content-center" style="color: rgb(69,69,69);">Are you sure you want to
+                        quit?</p>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-light" type="button" v-on:click="showQuitModal = false" data-dismiss="modal"
+                            style="font-size: 26px;background-color: rgb(255,255,255);">Close
+                    </button>
+
+
+                    <button class="btn btn-primary" type="button" v-on:click="this.state = 'menu'"
+                            style="background-color: rgb(255,0,0);font-size: 26px;">Quit
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<script
+        src="assets/js/jquery.min.js"></script>
+<script src="assets/bootstrap/js/bootstrap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+<script>
+
+    var socket = null;
+
+
+    var app = new Vue({
+        el: '#app',
+        data: {
+            myId: "",
+            playerName: "",
+            playerNumber: "",
+            message: 'Sup',
+            lobbyCode: '',
+            state: "start",
+            controllerData: [],
+
+            //Modals
+            showQuitModal: false,
+
+            //Error
+            errorMessage: "",
+        },
+
+
+        methods: {
+            gotoEnterCode() {
+                this.state = "enter code"
+            },
+
+            joinGame() {
+                var returnData = parseInt(this.lobbyCode);
+                socket.emit('joinGame', returnData);
+
+            },
+
+            generateCode() {
+                var firstPart = (Math.random() * 46656) | 0;
+                var secondPart = (Math.random() * 46656) | 0;
+                firstPart = ("000" + firstPart.toString(36)).slice(-3);
+                secondPart = ("000" + secondPart.toString(36)).slice(-3);
+                return firstPart + secondPart;
+            },
+
+            //------------ GAME FUNCTIONS----------
+
+
+            sendControlsOverNetwork() {
+                socket.emit('updateControls', this.controllerData);
+            },
+
+            quit() {
+                this.buttonB();
+                this.state = 'menu';
+            },
+
+            replay() {
+                this.buttonA();
+                this.state = 'game';
+            },
+
+
+            //------------- Button Functions --------------
+
+
+            buttonDown() {
+                this.controllerData.down = this.generateCode();
+                this.sendControlsOverNetwork();
+            },
+
+            buttonUp() {
+                this.controllerData.up = this.generateCode();
+                this.sendControlsOverNetwork();
+            },
+
+            buttonLeft() {
+                this.controllerData.left = this.generateCode();
+                this.sendControlsOverNetwork();
+            },
+
+            buttonRight() {
+                this.controllerData.right = this.generateCode();
+                this.sendControlsOverNetwork();
+            },
+
+
+            buttonA() {
+                this.controllerData.a = this.generateCode();
+                this.sendControlsOverNetwork();
+            },
+
+            buttonB() {
+                this.controllerData.b = this.generateCode();
+                this.sendControlsOverNetwork();
+            },
+
+            buttonX() {
+                this.controllerData.x = this.generateCode();
+                this.sendControlsOverNetwork();
+            },
+
+            buttonY() {
+                this.controllerData.y = this.generateCode();
+                this.sendControlsOverNetwork();
+            },
+
+            //----------------------------------------
+
+
+            onSceneChanged() {
+
+                let states = this;
+
+                socket.on('changeScene', function (data) {
+                    console.log("This is the next scene " + data);
+                    states.state = "game";
+
+                });
+
+            },
+
+            onPlayerJoined() {
+                let states = this;
+
+                socket.on('playerJoined', function (data) {
+                    console.log('Player Joined is: ' - data);
+                    states.state = "menu";
+                    states.errorMessage = "";
+                    console.log("The new state is " + this.state);
+
+                })
+            },
+
+            onRegister() {
+                var states = this;
+
+                socket.on('register', function (data) {
+                    console.log(`Received - ${data["id"]}`);
+                    states.myId = data["id"];
+                });
+            },
+
+            onPlayerInit() {
+                var states = this;
+                socket.on('onPlayerInit', function (data) {
+                    console.log(`Player Init - ${data["name"]} and ID - ${data["id"]}`);
+
+                    if (data["id"] === states.myId) {
+
+                        states.playerName = data["name"];
+                        states.playerNumber = data["number"];
+                    }
+                });
+            },
+
+
+            onGameCommand() {
+                var states = this;
+                socket.on('gameCommand', function (data) {
+                    var command = data["command"];
+
+                    console.log(command);
+
+                    if (command === 'replay') {
+                        states.showEndModal = false;
+                    }
+
+                    if (command === 'quit') {
+                        states.state = 'menu';
+                    }
+
+
+                })
+            },
+
+            onGameSessionEnd() {
+                var states = this;
+
+                socket.on('gameSessionEnd', function (data) {
+                    console.log('game session has ended');
+                    states.state = 'end';
+                });
+            },
+
+            onErrorMessage() {
+                var states = this;
+                socket.on('gameError', function (data) {
+                    console.log('Error is : ' + data);
+                    states.errorMessage = data;
+                });
+            }
+        },
+
+        created: function () {
+            // socket = io("http://localhost:3000");
+            socket = io("https://sticks-game-server.herokuapp.com/");
+
+            this.state = "start";
+
+            this.controllerData = {
+                up: "",
+                down: "",
+                left: "",
+                right: "",
+                a: "",
+                b: "",
+                x: "",
+                y: "",
+            };
+
+            //Register Events
+
+            this.onSceneChanged();
+            this.onPlayerJoined();
+            this.onRegister();
+            this.onGameCommand();
+            this.onGameSessionEnd();
+            this.onErrorMessage();
+            this.onPlayerInit();
+            //-----------------
+
+        },
+
+    });
+
+
+</script>
+</body>
+</html>
