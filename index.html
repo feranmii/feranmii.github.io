@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no"/>
     <title>VJ Sticks</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
@@ -173,6 +173,16 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <!--    Host Disconnected-->
+
+    <div class="col" v-if="this.state.localeCompare('hostDisconnected') === 0">
+        <p class="text-capitalize text-center" style="font-size: 30px;margin-top: 81px;">The host has disconnected from
+            the game. </p>
+        <button class="btn btn-primary border-white" type="button" v-on:click="this.state = 'menu'"
+                style="margin-top: 90px;height: 64px;width: 217px;background-color: #3d5a7a;">Go Home
+        </button>
     </div>
 
 
@@ -374,6 +384,13 @@
                     console.log('Error is : ' + data);
                     states.errorMessage = data;
                 });
+            },
+
+            onHostDisconnected() {
+                var states = this;
+                socket.on('onHostDisconnected', function (data) {
+                    states.state = 'hostDisconnected';
+                });
             }
         },
 
@@ -403,6 +420,7 @@
             this.onGameSessionEnd();
             this.onErrorMessage();
             this.onPlayerInit();
+            this.onHostDisconnected();
             //-----------------
 
         },
