@@ -390,6 +390,7 @@
                 var states = this;
                 socket.on('onHostDisconnected', function (data) {
                     states.state = 'hostDisconnected';
+                    socket.emit('leaveRoom');
                 });
             }
         },
