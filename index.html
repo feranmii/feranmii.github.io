@@ -2,15 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, user-scalable=no"/>-->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1,  shrink-to-fit=no, user-scalable=no"/>
+    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, user-scalable=no"/>-->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1,  shrink-to-fit=no, user-scalable=no"/>
     <title>VJ Sticks</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 
     <style>
-        body{
+        body {
             touch-action: none;
         }
     </style>
@@ -21,56 +22,51 @@
 <div id="app">
 
     <!--   Start Screen-->
-    <div class="col text-center" v-if="this.state.localeCompare('start') === 0">
+    <div class="col text-center d-flex flex-column align-items-md-center" v-if="this.state.localeCompare('start') === 0">
         <div class="container">
             <h2 class="text-center" style="padding: 11px;margin: 4px;color: rgb(255,255,255);">Connect a screen</h2>
         </div>
-        <div class="container">
-            <div class="row">
-                <div class="col-auto"><i class="fa fa-info d-flex align-items-center"
-                                         style="margin: 0px;margin-top: 16px;color: rgb(255,255,255);"></i></div>
-                <div class="col">
-                    <p class="text-left" style="color: rgb(251,253,255);">Open https://bit.ly/2zBbG7R on a
-                        Desktop/Tablet to set up your console.</p>
-                </div>
+        <div class="row" style="margin-top: 33px;">
+            <div class="col-auto"><i class="fa fa-info d-flex align-items-center"
+                                     style="margin: 0px;margin-top: 16px;color: rgb(255,255,255);"></i></div>
+            <div class="col">
+                <p class="lead text-left" style="color: rgb(251,253,255);">Open https://bit.ly/2zBbG7R on a
+                    Desktop/Tablet to set up your console.</p>
             </div>
         </div>
-        <div class="container" style="margin-top: 13px;">
-            <div class="row">
-                <div class="col-auto" style="margin-top: 16px;"><i class="fa fa-info d-flex align-items-center"
-                                                                   style="margin-top: 0;color: rgb(255,255,255);"></i>
-                </div>
-                <div class="col">
-                    <p class="text-left d-flex justify-content-center align-items-center"
-                       style="color: rgb(255,255,255);">Enter the Lobby ID Displayed On The Start Screen.</p>
-                </div>
+        <div class="row" style="margin-top: 24px;">
+            <div class="col-auto" style="margin-top: 7px;"><i class="fa fa-info d-flex align-items-center"
+                                                              style="margin-top: 0;color: rgb(255,255,255);"></i></div>
+            <div class="col">
+                <p class="lead text-left d-flex justify-content-center align-items-center"
+                   style="color: rgb(255,255,255);">Enter the Lobby ID Displayed On The Start Screen.</p>
             </div>
         </div>
-        <button class="btn btn-primary text-center" type="button"
-                style="max-width: 400;width: 405;background-color: #3a5f87;margin: 0;margin-top: 45px;margin-left: 0;"
-                v-on:click="gotoEnterCode">I&#39;ve
-            got the code, let me in.<i class="fa fa-chevron-right" style="margin-left: 11px;"></i></button>
+        <button class="btn btn-primary btn-lg text-center" type="button"  v-on:click="gotoEnterCode"
+                style="max-width: 400;width: 405;background-color: #3a5f87;margin: 0;margin-top: 82px;margin-left: 0;">I&#39;ve
+            got the code, let me in.<i class="fa fa-chevron-right" style="margin-left: 11px;" ></i></button>
     </div>
 
     <!--    Join Game Screen-->
 
-    <div class="col text-center" v-if="this.state.localeCompare('enter code') === 0">
+    <div class="col-12 offset-0 text-center d-md-flex flex-column justify-content-md-start align-items-md-center"
+         v-if="this.state.localeCompare('enter code') === 0">
         <i class="fa fa-desktop" style="font-size: 72px;margin-top: 25px;"></i>
         <p style="margin-top: 12px;">Open https://bit.ly/2zBbG7R on a Desktop/Tablet to set up your console</p><input
-            class="form-control-lg" type="text" required="" name="Code" placeholder="Enter Code"
+            class="form-control-lg" type="text" required="" name="Code" placeholder="Enter Code" inputmode="numeric" autocomplete="false"
             style="background-color: rgba(255,255,255,0.02);margin-top: 32px;color: rgba(255,255,255, 1);"
             v-model="lobbyCode">
         <button class="btn btn-primary"
                 type="button" style="margin-top: 90px;width: 195px;background-color: rgb(63,99,137);"
-                v-on:click="joinGame">Join Game
+            v-on:click="joinGame">Join Game
         </button>
         <h5 style="margin-top: 66px;color: rgba(183,49,49,0.91);"> {{errorMessage}} </h5>
 
     </div>
 
-
     <!--    Main Menu Screen-->
-    <div class="col align-self-start" v-if="this.state.localeCompare('menu') === 0">
+    <div class="col-12 offset-0 text-left d-flex flex-column justify-content-center align-items-center align-self-start"
+         v-if="this.state.localeCompare('menu') === 0">
         <p class="text-center" style="font-size: 22px;margin-top: 23px;">Player ID: {{myId}}</p>
         <div class="row"
              style="margin-top: 197px;width: 359px;margin-left: 0px;background-color: transparent;margin-right: 0;">
@@ -107,7 +103,7 @@
     </div>
 
     <!--    Game Screen Screen-->
-    <div class="col" style="margin-top: 14px;" v-if="this.state.localeCompare('game') === 0">
+    <div class="col d-flex flex-column" style="margin-top: 14px;" v-if="this.state.localeCompare('game') === 0">
         <div class="container" style="background-color: #3d6981;border-radius: 10px;">
             <h2 class="text-center" style="padding: 12px;">P{{playerNumber}} | ({{playerName}})</h2>
         </div>
@@ -125,7 +121,7 @@
                 <button class="btn btn-primary btn-block btn-lg" type="button" v-on:click="buttonX"
                         style="height: 131px;border-radius: 30px;background-color: rgb(255,255,255);">
 
-                    <img src="assets/img/foot-left.png" />
+                    <img src="assets/img/foot-left.png"/>
 
                 </button>
             </div>
@@ -133,7 +129,7 @@
                 <button class="btn btn-primary btn-block" type="button" v-on:click="buttonY"
                         style="height: 131px;border-radius: 30px;background-color: rgb(255,255,255);">
 
-                    <img src="assets/img/foot-right.png" />
+                    <img src="assets/img/foot-right.png"/>
 
                 </button>
             </div>
@@ -142,7 +138,7 @@
 
     <!--    End Game Screen-->
 
-    <div class="col" style="margin-top: 33px;" v-if="this.state.localeCompare('end') === 0">
+    <div class="col d-flex flex-column" style="margin-top: 33px;" v-if="this.state.localeCompare('end') === 0">
         <h1 class="text-center" style="margin-top: 0px;">Race Finished</h1>
         <div class="row justify-content-between" style="margin-top: 179px;">
             <div class="col text-center">
@@ -160,7 +156,7 @@
 
     <!--    Host Disconnected-->
 
-    <div class="col" v-if="this.state.localeCompare('hostDisconnected') === 0">
+    <div class="col d-flex flex-column" v-if="this.state.localeCompare('hostDisconnected') === 0">
         <p class="text-capitalize text-center" style="font-size: 30px;margin-top: 81px;">The host has disconnected from
             the game. </p>
         <button class="btn btn-primary border-white" type="button" v-on:click="this.state = 'menu'"
@@ -198,7 +194,6 @@
             </div>
         </div>
     </div>
-
 
 
 </div>
