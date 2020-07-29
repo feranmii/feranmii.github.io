@@ -1,29 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" style="height: 100%;max-height: 100%;min-height: 100%;width: 100%;">
 <head>
-    <meta charset="UTF-8">
-    <!--    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, shrink-to-fit=no, user-scalable=no"/>-->
     <meta name="viewport"
           content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1,  shrink-to-fit=no, user-scalable=no"/>
     <title>VJ Sticks</title>
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Didact+Gothic">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Nanum+Gothic">
     <link rel="stylesheet" href="assets/fonts/font-awesome.min.css">
     <link rel="stylesheet" href="assets/css/styles.css">
 
-    <style>
-        body {
-            touch-action: double-tap-zoom;
-
-        }
-    </style>
-
 </head>
-<body style="background-color: rgb(25,25,25);color: rgb(255,255,255);">
+<body style="background-color: rgb(25,25,25);color: rgb(255,255,255); height: 100%;min-height: 100%;max-height: 100%;width: 100%;">
 
-<div id="app">
-
+<div id="app" style=" height: 100%;min-height: 100%;max-height: 100%;width: 100%;">
     <!--   Start Screen-->
-    <div class="col text-center d-flex flex-column align-items-md-center" v-if="this.state.localeCompare('start') === 0">
+    <div class="col text-center d-flex flex-column align-items-md-center"
+         v-if="this.state.localeCompare('start') === 0">
         <div class="container">
             <h2 class="text-center" style="padding: 11px;margin: 4px;color: rgb(255,255,255);">Connect a screen</h2>
         </div>
@@ -43,9 +36,9 @@
                    style="color: rgb(255,255,255);">Enter the Lobby ID Displayed On The Start Screen.</p>
             </div>
         </div>
-        <button class="btn btn-primary btn-lg text-center" type="button"  v-on:click="gotoEnterCode"
-                style="max-width: 400;width: 405;background-color: #3a5f87;margin: 0;margin-top: 82px;margin-left: 0;">I&#39;ve
-            got the code, let me in.<i class="fa fa-chevron-right" style="margin-left: 11px;" ></i></button>
+        <button class="btn btn-primary btn-lg text-center" type="button" v-on:click="gotoEnterCode"
+                style="max-width: 400px;width: 405px;background-color: #3a5f87;margin: 0;margin-top: 82px;margin-left: 0;">
+            I&#39;ve got the code, let me in.<i class="fa fa-chevron-right" style="margin-left: 11px;"></i></button>
     </div>
 
     <!--    Join Game Screen-->
@@ -54,163 +47,279 @@
          v-if="this.state.localeCompare('enter code') === 0">
         <i class="fa fa-desktop" style="font-size: 72px;margin-top: 25px;"></i>
         <p style="margin-top: 12px;">Open https://bit.ly/2zBbG7R on a Desktop/Tablet to set up your console</p><input
-            class="form-control-lg" type="text" required="" name="Code" placeholder="Enter Code" inputmode="numeric" autocomplete="false"
+            class="form-control-lg" type="text" required="" name="Code" placeholder="Enter Code" inputmode="numeric"
+            autocomplete="false"
             style="background-color: rgba(255,255,255,0.02);margin-top: 32px;color: rgba(255,255,255, 1);"
             v-model="lobbyCode">
         <button class="btn btn-primary"
                 type="button" style="margin-top: 90px;width: 195px;background-color: rgb(63,99,137);"
-            v-on:click="joinGame">Join Game
+                v-on:click="joinGame">Join Game
         </button>
-        <h5 style="margin-top: 66px;color: rgba(183,49,49,0.91);"> {{errorMessage}} </h5>
+        <h5 style="margin-top: 66px;color: rgba(183,49,49,0.91);"> {{errorMessage}}</h5>
 
     </div>
 
-    <!--    Main Menu Screen-->
-    <div class="col-12 offset-0 text-left d-flex flex-column justify-content-center align-items-center align-self-start"
-         v-if="this.state.localeCompare('menu') === 0">
-        <p class="text-center" style="font-size: 22px;margin-top: 23px;">Player ID: {{myId}}</p>
-        <div class="row"
-             style="margin-top: 197px;width: 359px;margin-left: 0px;background-color: transparent;margin-right: 0;">
-            <div class="col d-flex justify-content-end align-items-center" v-on:click="buttonLeft"
-                 style="padding: 0px;">
-                <button class="btn btn-primary btn-block shadow" type="button"
-                        style="margin-top: 0px;height: 63px;color: rgb(255,255,255);background-color: rgb(255,255,255);">
-                    <i class="fa fa-caret-left" style="font-size: 34px;color: #26abab;"></i></button>
+    <!-- Main Menu -->
+    <div class="d-block" v-if="this.state.localeCompare('menu') === 0"
+         style="background: url(assets/img/NavBg.png) no-repeat center center fixed;-webkit-background-size: cover;background-size: cover; height: 100%;min-height: 100%;max-height: 100%;width: 100%;">
+
+        <div class="row d-flex flex-row align-items-center" id="nav-header"
+             style="background-color: rgba(21,33,91,0);height: 15%;margin-right: 0px;margin-left: 0px;">
+
+            <button class="btn col d-flex justify-content-start" data-toggle="modal" data-target="#quit-modal"  id="back-button" type="button">
+                <img id="backbutton-img" src="assets/img/Back%20Button.png" />
+            </button>
+            <div class="col text-center d-flex justify-content-center"  id="player-name-land">  <!--col text-center-->
+                <p class="id-label"
+                   style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(252,252,252);"> </p>
+                <p class="id-value"
+                   style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(255,255,255); ">{{myId}}</p>
             </div>
-            <div
-                    class="col">
-                <button class="btn btn-primary btn-block shadow" type="button" v-on:click="buttonUp"
-                        style="height: 64px;background-color: rgb(255,255,255);margin-bottom: 10px;"><i
-                        class="fa fa-caret-up" style="font-size: 34px;color: #26abab;"></i></button>
-                <button class="btn btn-primary btn-block shadow" v-on:click="buttonA"
-                        type="button" style="margin-top: 2px;height: 75px;background-color: #26abab;"><i
-                        class="fa fa-circle" style="font-size: 42px;"></i></button>
-                <button class="btn btn-primary btn-block shadow" v-on:click="buttonDown" type="button"
-                        style="margin-top: 10px;height: 63px;background-color: rgb(255,255,255);"><i
-                        class="fa fa-caret-down" style="color: #26abab;font-size: 34px;"></i></button>
-            </div>
-            <div
-                    class="col d-flex justify-content-end align-items-center" style="padding: 0px;">
-                <button class="btn btn-primary btn-block shadow" v-on:click="buttonRight" type="button"
-                        style="margin-top: 0px;height: 63px;color: rgb(255,255,255);background-color: rgb(255,255,255);">
-                    <i class="fa fa-caret-right" style="font-size: 34px;color: #26abab;"></i></button>
-            </div>
+            <div class="col d-flex justify-content-end"><img class="olympian-img" src="assets/img/Olympian-Logo.png"
+                                                             style="max-height: 20%;"></div>
         </div>
-        <div class="container">
-            <button class="btn btn-primary shadow" type="button" v-on:click="buttonB"
-                    style="margin-top: 36px;height: 63px;background-color: rgb(255,255,255);width: 100px;"><i
-                    class="fa fa-arrow-left" style="font-size: 34px;color: #26abab;"></i></button>
+        <div class="flex-column justify-content-center align-items-center" id="player-name-port" style="height: 15%;">
+            <p class="id-label"
+               style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(255,255,255);"></p>
+            <p class="id-value"
+               style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(255,255,255);">{{myId}}</p>
         </div>
-    </div>
-
-    <!--    Game Screen Screen-->
-    <div class="col d-flex flex-column" style="margin-top: 14px;" v-if="this.state.localeCompare('game') === 0">
-        <div class="container" style="background-color: #3d6981;border-radius: 10px;">
-            <h2 class="text-center" style="padding: 12px;">P{{playerNumber}} | ({{playerName}})</h2>
-        </div>
-        <div class="container"
-             style="background-color: #de3333;padding-top: 5px;padding-bottom: 15px;border-radius: 20px;margin-top: 28px;">
-            <h4 class="text-center" style="background-color: rgba(234,88,88,0);margin-top: 33px;padding: 0px;"><strong>TAP
-                THE LEFT AND RIGHT BUTTONS TO RUN</strong></h4>
-        </div>
-        <button class="btn btn-primary btn-lg" v-on:click="showQuitModal = true" type="button"
-                style="height: 110px;border-radius: 20px;width: 110px;background-color: #ffffff;margin-top: 26px;"><i
-                class="fa fa-caret-square-o-left" style="font-size: 45px;color: rgb(222,51,51);"></i></button>
-        <div
-                class="row justify-content-between" style="margin-top: 129px;">
-            <div class="col text-center">
-                <button class="btn btn-primary btn-block btn-lg" type="button" v-on:click="buttonX"
-                        style="height: 131px;border-radius: 30px;background-color: rgb(255,255,255);">
-
-                    <img src="assets/img/foot-left.png"/>
-
-                </button>
-            </div>
-            <div class="col text-center">
-                <button class="btn btn-primary btn-block" type="button" v-on:click="buttonY"
-                        style="height: 131px;border-radius: 30px;background-color: rgb(255,255,255);">
-
-                    <img src="assets/img/foot-right.png"/>
-
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!--    End Game Screen-->
-
-    <div class="col d-flex flex-column" style="margin-top: 33px;" v-if="this.state.localeCompare('end') === 0">
-        <h1 class="text-center" style="margin-top: 0px;">Race Finished</h1>
-        <div class="row justify-content-between" style="margin-top: 179px;">
-            <div class="col text-center">
-                <button class="btn btn-primary btn-block btn-lg" type="button" v-on:click="quit"
-                        style="font-size: 26px;height: 96px;background-color: rgb(231,47,47);color: rgb(255,255,255);">
-                    <strong>Quit</strong></button>
-            </div>
-            <div class="col">
-                <button class="btn btn-primary btn-block btn-lg" type="button" v-on:click="replay"
-                        style="font-size: 26px;height: 96px;background-color: rgb(255,255,255);color: rgb(65,100,152);">
-                    <strong>Replay</strong></button>
-            </div>
-        </div>
-    </div>
-
-    <!--    Host Disconnected-->
-
-    <div class="col d-flex flex-column" v-if="this.state.localeCompare('hostDisconnected') === 0">
-        <p class="text-capitalize text-center" style="font-size: 30px;margin-top: 81px;">The host has disconnected from
-            the game. </p>
-        <button class="btn btn-primary border-white" type="button" v-on:click="this.state = 'menu'"
-                style="margin-top: 90px;height: 64px;width: 217px;background-color: #3d5a7a;">Go Home
-        </button>
-    </div>
-
-
-    <!--    Quit Modal-->
-
-    <div role="dialog" tabindex="-1" class="modal fade show" style="display: block; padding: 10px;"
-         v-if="showQuitModal === true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header text-center d-flex">
-                    <h4 class="modal-title d-flex" style="color: rgb(173,42,42);">Quit?</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
-                            v-on:click="showQuitModal = false"><span
-                            aria-hidden="true">×</span></button>
+        <div class="d-flex d-md-flex justify-content-center justify-content-md-center" id="control-buttons-container">
+            <div class="row text-left" id="controls-row" style="height: 100%;">
+                <div class="col text-left d-flex justify-content-end align-items-center"
+                     style="padding: 0px;max-height: 100%;">
+                    <button class="btn btn-primary btn-block" v-on:click="buttonLeft" type="button"
+                            style="margin-top: 0px;height: 40%;color: rgb(255,255,255);background-color: rgba(255,255,255,0);border: none;">
+                        <img src="assets/img/Nav%20Icons/Nav-Left.png" style="width: 70%;"></button>
                 </div>
-                <div class="modal-body">
-                    <p class="d-flex justify-content-center" style="color: rgb(69,69,69);">Are you sure you want to
-                        quit?</p>
-                </div>
-                <div class="modal-footer d-flex justify-content-center">
-                    <button class="btn btn-light" type="button" v-on:click="showQuitModal = false" data-dismiss="modal"
-                            style="font-size: 26px;background-color: rgb(255,255,255);">Close
+                <div
+                        class="col justify-content-center align-items-center align-content-center align-self-center"
+                        style="filter: blur(0px);max-height: 100%;">
+                    <button class="btn btn-primary btn-block"  v-on:click="buttonUp" type="button"
+                            style="margin-bottom: 10px;border: none;background-color: rgba(255,255,255,0);color: rgba(255,255,255,0.07);">
+                        <img class="shadow-none" src="assets/img/Nav%20Icons/Nav-Up.png"
+                             style="color: rgb(255,255,255);max-height: 100%;max-width: 50%;"></button>
+                    <button
+                            class="btn btn-primary btn-block d-flex justify-content-center" v-on:click="buttonA" type="button"
+                            style="margin-top: 2px;background-color: rgba(38,171,171,0);border: none;"><img
+                            src="assets/img/Nav%20Icons/Nav-Center.png" style="width: 50%;height: 100%;">
                     </button>
-
-
-                    <button class="btn btn-primary" type="button" v-on:click="this.state = 'menu'"
-                            style="background-color: rgb(255,0,0);font-size: 26px;">Quit
+                    <button class="btn btn-primary btn-block"  v-on:click="buttonDown" type="button"
+                            style="background-color: rgba(255,255,255,0);border: none;"><img
+                            src="assets/img/Nav%20Icons/Nav-Down.png" style="width: 50%;height: 100%;"></button>
+                </div>
+                <div
+                        class="col d-flex justify-content-end align-items-center"
+                        style="padding: 0px;max-height: 100%;">
+                    <button class="btn btn-primary" type="button"  v-on:click="buttonRight"
+                            style="margin-top: 0px;height: 40%;color: rgb(255,255,255);background-color: rgba(255,255,255,0);border: none;box-shadow: none;">
+                        <img src="assets/img/Nav%20Icons/Nav-Right.png" style="width: 70%;">
                     </button>
                 </div>
             </div>
+        </div>
+        <div class="row flex-row justify-content-between" id="nav-footer"
+             style="position: relative;background-color: rgba(82,170,75,0);min-height: 15%;max-height: 15%;width: 100%;margin-right: 0px;margin-left: 0px;">
+            <div class="col d-flex flex-column justify-content-start align-items-start order-1 col-4">
+                <button class="btn btn-primary text-center d-flex justify-content-center" type="button" style="background-color: rgba(0,123,255,0);border: none;"><img id="settings-image" src="assets/img/Nav%20Icons/Nav-Settings.png">
+                </button>
+            </div>
+            <div class="col d-flex flex-column justify-content-start align-items-end order-1 col-4">
+                <button class="btn btn-primary text-center d-flex justify-content-center" type="button" data-toggle="modal" data-target="#info-modal"
+                        style="background-color: rgba(0,123,255,0);border: none;"><img id="info-image" src="assets/img/Nav%20Icons/Nav-Info.png">
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Game Info -->
+    <div class="modal fade shadow  justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center" v-if="this.state.localeCompare('menu') === 0"
+         role="dialog" tabindex="-1" id="info-modal" style="color: rgb(255,255,255);height: 100%;">
+        <div class="modal-dialog modal-sm" role="document"
+             style="background-color: rgba(255,255,255,.2) !important;border: none;">
+            <div class="modal-content" style="background-color: transparent;border: none;">
+                <div class="col text-center flex-column justify-content-center align-items-center"
+                     style="width: 100%;height: 80%;max-width: 200%;padding: 0px;">
+                    <p style="font-size: 20px;padding-top: 5%;font-family: 'Didact Gothic', sans-serif;"><strong>To add
+                        more players:</strong></p>
+                    <p class="text-center"
+                       style="font-family: 'Didact Gothic', sans-serif;font-size: 19px;padding-top: 1%;"><strong>1. New
+                        Players should open VJSticks.com on their mobile web browser</strong><br></p>
+                    <p class="text-center"
+                       style="font-family: 'Didact Gothic', sans-serif;font-size: 19px;padding-top: 1%;"><strong>2. New
+                        Players should enter the Lobby Code currently displayed on your game screen into their
+                        mobile.</strong><br></p>
+                    <hr style="width: 76%;background-color: rgba(255,255,255,0.27);height: 1.5px;">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal"
+                            style="margin-bottom: 23px;font-size: 25px;background-color: rgba(0,123,255,0);border: none;">
+                        <strong>GOT IT</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Quit Game Modal -->
+    <div class="modal fade shadow  justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center"
+         role="dialog" tabindex="-1" id="quit-modal"
+         style="color: rgb(255,255,255);margin: 0px;height: 100%;width: 100%;">
+        <div class="modal-dialog modal-sm" role="document"
+             style="background-color: rgba(255,255,255,.1) !important;border: none;">
+            <div class="modal-content" style="background-color: transparent;border: none;">
+                <div class="col d-flex flex-column justify-content-center align-items-center" style="width: 100%;">
+                    <p style="font-size: 30px;padding-top: 5%;font-family: 'Didact Gothic', sans-serif;"><strong>Quit
+                        Olympian?</strong></p>
+                    <hr style="width: 76%;background-color: rgba(255,255,255,0.27);height: 1.5px;margin-top: -7px;">
+                    <div class="row">
+                        <div class="col d-flex justify-content-start" style="width: 166px;">
+                            <button class="btn btn-primary" v-on:click="leaveGame" type="button" data-dismiss="modal"
+                                    style="margin-bottom: 23px;font-size: 25px;background-color: rgba(0,123,255,0);border: none;">
+                                <strong>YES</strong></button>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <button class="btn btn-primary" type="button" data-dismiss="modal"
+                                    style="margin-bottom: 23px;font-size: 25px;background-color: rgba(0,123,255,0);border: none;">
+                                <strong>NO</strong></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quit To Menu Modal -->
+    <div class="modal fade shadow  justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center"
+         role="dialog" tabindex="-1" id="quit-menu-modal"
+         style="color: rgb(255,255,255);margin: 0px;height: 100%;width: 100%;">
+        <div class="modal-dialog modal-sm" role="document"
+             style="background-color: rgba(255,255,255,.1) !important;border: none;">
+            <div class="modal-content" style="background-color: transparent;border: none;">
+                <div class="col d-flex flex-column justify-content-center align-items-center" style="width: 100%;">
+                    <p style="font-size: 30px;padding-top: 5%;font-family: 'Didact Gothic', sans-serif;"><strong>Quit
+                        To Menu?</strong></p>
+                    <hr style="width: 76%;background-color: rgba(255,255,255,0.27);height: 1.5px;margin-top: -7px;">
+                    <div class="row">
+                        <div class="col d-flex justify-content-start" style="width: 166px;">
+                            <button class="btn btn-primary" v-on:click="quit" type="button" data-dismiss="modal"
+                                    style="margin-bottom: 23px;font-size: 25px;background-color: rgba(0,123,255,0);border: none;">
+                                <strong>YES</strong></button>
+                        </div>
+                        <div class="col d-flex justify-content-end">
+                            <button class="btn btn-primary" type="button" data-dismiss="modal"
+                                    style="margin-bottom: 23px;font-size: 25px;background-color: rgba(0,123,255,0);border: none;">
+                                <strong>NO</strong></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Game pad screen -->
+    <div style="background: url(assets/img/Game/Game-bg.png) no-repeat center center fixed; height: 100%;"
+         v-if="this.state.localeCompare('game') === 0">
+        <div class="text-center d-flex flex-column justify-content-center align-items-center" id="player-name"
+             style="background-color: rgba(210,57,57,0);">
+            <p class="id-label"
+               style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(255,255,255);">Player {{playerNumber}}</p>
+            <p class="id-value"
+               style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(255,255,255);font-size: 28px;">
+               {{playerName}}</p>
+        </div>
+        <div class="d-flex align-items-md-center" id="control-buttons">
+            <div class="col d-flex d-sm-flex align-items-center justify-content-sm-center align-items-md-center"
+                 id="left-button-container" style="padding: 0px;height: 100%;width: 50%;">
+                <button class="btn" id="left-button"  v-on:click="buttonX" type="button"
+                        style="background-color: rgba(0,123,255,0);/*height: 80%;*//*width: 50%;*/"><img
+                        src="assets/img/Game/Game-Button.png" style="max-width: 100%;max-height: 100%;width: 100%;">
+                </button>
+            </div>
+            <div class="col d-flex d-sm-flex align-items-center justify-content-sm-end justify-content-md-center align-items-md-center"
+                 id="right-button-container" style="padding: 0px;height: 100%;width: 50%;">
+                <button class="btn btn-primary"  v-on:click="buttonY" id="right-button" type="button"
+                        style="background-color: rgba(0,123,255,0);border: none;"><img
+                        src="assets/img/Game/Game-Button.png" style="max-height: 100%;width: 100%;"></button>
+            </div>
+        </div>
+        <div class="text-center d-flex d-lg-flex justify-content-center align-items-center justify-content-lg-center align-items-lg-center"
+             id="game-info" style="background-color: rgba(177,195,70,0);">
+            <p class="text-center" style="color: rgb(255,255,255);font-size: 16px;margin: 0px;">Tap each button one
+                after the other to run</p>
+        </div>
+        <div class="d-flex flex-row justify-content-between align-items-center" id="nav-footer"
+             style="background-color: rgba(183,88,19,0);">
+            <button class="btn btn-primary" type="button" data-toggle="modal" data-target="#quit-modal"
+                    style="background-color: rgba(255,255,255,0);border: none;height: 94%;"><img
+                    class="d-sm-flex justify-content-sm-start" src="assets/img/Back%20Button.png" style="height: 78%;">
+            </button>
+            <img src="assets/img/Olympian-Logo.png"
+                 style="height: 88%;opacity: 0.70;"></div>
+    </div>
+
+    <!-- Game Tip Modal -->
+    <div class="modal fade shadow justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center"
+         role="dialog" tabindex="-1" id="game-tip-modal" style="color: rgb(255,255,255);height: 100%;">
+        <div class="modal-dialog modal-sm" role="document"
+             style="background-color: rgba(255,255,255,.2) !important;border: none;">
+            <div class="modal-content" style="background-color: transparent;border: none;">
+                <div class="col text-center flex-column justify-content-center align-items-center"
+                     style="width: 100%;height: 80%;max-width: 200%;padding: 0px;">
+                    <p class="text-center"
+                       style="font-family: 'Didact Gothic', sans-serif;font-size: 19px;padding-top: 1%;"><strong>Tap the right and left buttons one after the other to run</strong></p>
+                    <p class="text-center"
+                       style="font-family: 'Didact Gothic', sans-serif;font-size: 19px;padding-top: 1%;"><strong>The
+                        Stamina bar also determines your speed</strong><br></p>
+                    <hr style="width: 76%;background-color: rgba(255,255,255,0.27);height: 1.5px;">
+                    <button class="btn btn-primary" type="button" data-dismiss="modal"
+                            style="margin-bottom: 23px;font-size: 25px;background-color: rgba(0,123,255,0);border: none;">
+                        <strong>GOT IT</strong></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Replay Screen -->
+    <div style="background: url(assets/img/Game/Game-bg.png) no-repeat center center fixed; height: 100%;"
+         v-if="this.state.localeCompare('end') === 0">
+        <div class="col" id="replay-title">
+            <h1 class="text-center d-flex d-md-flex justify-content-center align-items-center justify-content-md-center align-items-md-center"
+                style="font-family: 'Didact Gothic', sans-serif;font-size: 46px;color: rgb(255,255,255);height: 100%;">
+                Replay?</h1>
+        </div>
+        <div class="col d-flex justify-content-center align-items-center justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center"
+             id="replay-button-container" style="width: 100%;">
+            <button class="btn" id="replay-button" type="button" v-on:click="replay" style="border: none;"><img
+                    src="assets/img/Game/Restart-Button.png" style="max-width: 100%;max-height: 100%;"></button>
+        </div>
+        <div class="row d-md-flex d-xl-flex align-items-xl-center" id="bottom-nav" style="width: 100%;">
+            <div class="col col-10" id="quit-game-container">
+                <button class="btn d-md-flex" id="quit-game-button"  data-toggle="modal" data-target="#quit-menu-modal" type="button" style="border: none;"><img
+                        src="assets/img/Back%20Button.png" style="max-width: 100%;max-height: 100%;"></button>
+            </div>
+            <div class="col d-xl-flex justify-content-xl-end align-items-xl-center col-2"
+                 style="height: 100%;width: 50%;"><img class="d-md-flex d-xl-flex" id="bottom-olympian-logo"
+                                                       src="assets/img/Olympian-Logo.png" style="widh: 50%;"
+                                                       width="100%" height="100%"></div>
         </div>
     </div>
 
 
 </div>
+<script src="assets/js/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-<script
-        src="assets/js/jquery.min.js"></script>
 <script src="assets/bootstrap/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
 <script>
 
-    var socket = null;
 
-    var plat = navigator.platform;
+
+    var socket = null;
 
     var app = new Vue({
         el: '#app',
@@ -220,7 +329,7 @@
             playerNumber: "",
             message: 'Sup',
             lobbyCode: '',
-            state: "start",
+            state: "menu",
             controllerData: [],
 
             //Modals
@@ -233,6 +342,7 @@
 
         methods: {
             gotoEnterCode() {
+                console.log("Enter code!")
                 this.state = "enter code"
             },
 
@@ -249,6 +359,8 @@
                 secondPart = ("000" + secondPart.toString(36)).slice(-3);
                 return firstPart + secondPart;
             },
+
+
 
             //------------ GAME FUNCTIONS----------
 
@@ -267,6 +379,11 @@
                 this.state = 'game';
             },
 
+            leaveGame(){
+                socket.emit('leaveRoom');
+                this.state = "enter code";
+
+            },
 
             //------------- Button Functions --------------
 
@@ -317,12 +434,27 @@
 
             onSceneChanged() {
 
+
                 let states = this;
+
 
                 socket.on('changeScene', function (data) {
                     console.log("This is the next scene " + data);
-                    states.state = "game";
 
+                    states.state = "game";
+                    if(localStorage.firstPlay)
+                    {
+                        console.log("We have it")
+                      //  localStorage.setItem("first-session", 1);
+
+                    }
+                    else{
+                        $("#game-tip-modal").modal();
+
+                        localStorage.firstPlay = 1;
+                        console.log("We dont have");
+                    }
+                   // localStorage.setItem("lastname", "Smith");
                 });
 
             },
@@ -335,7 +467,6 @@
                     states.state = "menu";
                     states.errorMessage = "";
                     console.log("The new state is " + this.state);
-
                 })
             },
 
@@ -349,6 +480,7 @@
             },
 
             onPlayerInit() {
+                console.log("intied")
                 var states = this;
                 socket.on('onPlayerInit', function (data) {
                     console.log(`Player Init - ${data["name"]} and ID - ${data["id"]}`);
@@ -436,11 +568,16 @@
             this.onHostDisconnected();
             //-----------------
 
+            // $("#info-modal").modal("hide");
+            // $("#quit-modal").modal("hide");
+
+
         },
 
     });
 
 
 </script>
+
 </body>
 </html>
