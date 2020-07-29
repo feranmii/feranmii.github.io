@@ -1,5 +1,6 @@
 body {
   height: 100%;
+  touch-action: manipulation;
 }
 
 @media screen and (max-width: 992px) and (orientation: portrait) {
