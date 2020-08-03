@@ -3,13 +3,15 @@ body {
     touch-action: manipulation;
 }
 
-@media screen and (max-width: 992px) and (orientation: portrait) {
+/*@media screen and (max-width: 992px) and (orientation: portrait) {*/
+@media (orientation: portrait) {
     #nav-column {
         padding-top: 5%;
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: landscape) {
+/*@media screen and (max-width: 992px) and (orientation: landscape) {*/
+@media (orientation: landscape) {
     #nav-column {
         padding-top: 0%;
     }
@@ -161,7 +163,8 @@ body {
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: portrait) {
+/*@media screen and (max-width: 992px) and (orientation: portrait) {*/
+@media (orientation: portrait) {
     #buttons-container #buttn {
         position: absolute;
         top: 50%;
@@ -176,7 +179,8 @@ body {
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: landscape) {
+/*@media screen and (max-width: 992px) and (orientation: landscape) {*/
+@media (orientation: landscape) {
     #buttons-container #buttn {
         position: absolute;
         top: 50%;
