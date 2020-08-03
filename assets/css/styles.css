@@ -6,24 +6,24 @@ body {
 /*@media screen and (max-width: 992px) and (orientation: portrait) {*/
 @media (orientation: portrait) {
     #nav-column {
-        padding-top: 5%;
+        /*padding-top: 5%;*/
     }
 }
 
 /*@media screen and (max-width: 992px) and (orientation: landscape) {*/
 @media (orientation: landscape) {
     #nav-column {
-        padding-top: 0%;
+        /*padding-top: 0%;*/
     }
 }
 
-@media screen and (orientation: portrait) {
+@media (orientation: portrait) {
     .d-flex.justify-content-md-center {
         width: 300%;
     }
 }
 
-@media screen and (orientation: landscape) {
+@media (orientation: landscape) {
     .d-flex.justify-content-md-center {
         width: 100%;
     }
@@ -53,19 +53,19 @@ body {
     /*margin-top: 2%;*/
 }
 
-@media screen and (max-width: 992px) and (orientation: portrait) {
+@media (orientation: portrait) {
     .backbutton-img {
         width: 15%;
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: landscape) {
+@media (orientation: landscape) {
     .backbutton-img {
         width: 7%;
     }
 }
 
-@media(orientation: portrait) {
+@media (orientation: portrait) {
     .id-label {
         font-size: 20px;
     }
@@ -101,34 +101,34 @@ body {
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: landscape) {
+@media (orientation: landscape) {
     .olympian-logo {
         height: 12%;
         width: 12%;
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: portrait) {
+@media (orientation: portrait) {
     .olympian-logo {
         height: 55%;
         width: 55%;
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: portrait) {
+@media  (orientation: portrait) {
     #load-button {
         margin-top: 25%;
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: landscape) {
+@media (orientation: landscape) {
     #load-button {
         margin-top: 5%;
         width: 20%;
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: landscape) {
+@media  (orientation: landscape) {
     #vj-logo {
         width: 8%;
         height: 8%;
@@ -137,7 +137,7 @@ body {
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: portrait) {
+@media  (orientation: portrait) {
     #vj-logo {
         width: 20%;
         height: 20%;
@@ -151,14 +151,14 @@ body {
     width: 100%;
 }
 
-@media screen and (orientation: landscape) {
+@media(orientation: landscape) {
     #buttons-container img {
         width: 30%;
         height: auto;
     }
 }
 
-@media screen and (orientation: portrait) {
+@media  (orientation: portrait) {
     #buttons-container img {
         width: 30%;
         height: auto;
@@ -209,8 +209,7 @@ body {
     }
 }
 
-@media (orientation: landscape) {
- {
+@media (orientation: landscape) { {
     display: none;
 }
 }
