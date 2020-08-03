@@ -65,27 +65,27 @@ body {
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: portrait) {
+@media(orientation: portrait) {
     .id-label {
         font-size: 20px;
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: landscape) {
+@media (orientation: landscape) {
     .id-label {
         font-size: 14px;
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: portrait) {
+@media (orientation: portrait) {
     #nav-header {
         /*top: 200px;*/
     }
 }
 
-@media screen and (max-width: 992px) and (orientation: landscape) {
+@media (orientation: landscape) {
     #nav-header {
-        top: 0px;
+        /*top: 0px;*/
     }
 }
 
