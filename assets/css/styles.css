@@ -208,7 +208,7 @@ body {
 }
 
 @media (orientation: landscape) {
-# {
+ {
     display: none;
 }
 }
