@@ -233,14 +233,11 @@ body {
 
 @media (orientation: portrait) {
     #player-name-land {
-        width: 100%;
-        display: flex;
+        display: none;
     }
 }
 @media (orientation: portrait) {
     #player-name-land {
-        width: 100%;
-
         display: flex;
     }
 }
