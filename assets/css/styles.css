@@ -15,7 +15,7 @@ body {
   }
 }
 
-@media screen and and (orientation: portrait) {
+@media screen and (orientation: portrait) {
   .d-flex.justify-content-md-center {
     width: 300%;
   }

@@ -66,14 +66,16 @@
         <div class="row d-flex flex-row align-items-center" id="nav-header"
              style="background-color: rgba(21,33,91,0);height: 15%;margin-right: 0px;margin-left: 0px;">
 
-            <button class="btn col d-flex justify-content-start" data-toggle="modal" data-target="#quit-modal"  id="back-button" type="button">
-                <img id="backbutton-img" src="assets/img/Back%20Button.png" />
+            <button class="btn col d-flex justify-content-start" data-toggle="modal" data-target="#quit-modal"
+                    id="back-button" type="button">
+                <img id="backbutton-img" src="assets/img/Back%20Button.png"/>
             </button>
-            <div class="col text-center d-flex justify-content-center"  id="player-name-land">  <!--col text-center-->
+            <div class="col text-center d-flex justify-content-center" id="player-name-land">  <!--col text-center-->
                 <p class="id-label"
-                   style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(252,252,252);"> </p>
+                   style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(252,252,252);"></p>
                 <p class="id-value"
-                   style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(255,255,255); ">{{myId}}</p>
+                   style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(255,255,255); ">
+                    {{myId}}</p>
             </div>
             <div class="col d-flex justify-content-end"><img class="olympian-img" src="assets/img/Olympian-Logo.png"
                                                              style="max-height: 20%;"></div>
@@ -95,23 +97,24 @@
                 <div
                         class="col justify-content-center align-items-center align-content-center align-self-center"
                         style="filter: blur(0px);max-height: 100%;">
-                    <button class="btn btn-primary btn-block"  v-on:click="buttonUp" type="button"
+                    <button class="btn btn-primary btn-block" v-on:click="buttonUp" type="button"
                             style="margin-bottom: 10px;border: none;background-color: rgba(255,255,255,0);color: rgba(255,255,255,0.07);">
                         <img class="shadow-none" src="assets/img/Nav%20Icons/Nav-Up.png"
                              style="color: rgb(255,255,255);max-height: 100%;max-width: 50%;"></button>
                     <button
-                            class="btn btn-primary btn-block d-flex justify-content-center" v-on:click="buttonA" type="button"
+                            class="btn btn-primary btn-block d-flex justify-content-center" v-on:click="buttonA"
+                            type="button"
                             style="margin-top: 2px;background-color: rgba(38,171,171,0);border: none;"><img
                             src="assets/img/Nav%20Icons/Nav-Center.png" style="width: 50%;height: 100%;">
                     </button>
-                    <button class="btn btn-primary btn-block"  v-on:click="buttonDown" type="button"
+                    <button class="btn btn-primary btn-block" v-on:click="buttonDown" type="button"
                             style="background-color: rgba(255,255,255,0);border: none;"><img
                             src="assets/img/Nav%20Icons/Nav-Down.png" style="width: 50%;height: 100%;"></button>
                 </div>
                 <div
                         class="col d-flex justify-content-end align-items-center"
                         style="padding: 0px;max-height: 100%;">
-                    <button class="btn btn-primary" type="button"  v-on:click="buttonRight"
+                    <button class="btn btn-primary" type="button" v-on:click="buttonRight"
                             style="margin-top: 0px;height: 40%;color: rgb(255,255,255);background-color: rgba(255,255,255,0);border: none;box-shadow: none;">
                         <img src="assets/img/Nav%20Icons/Nav-Right.png" style="width: 70%;">
                     </button>
@@ -121,12 +124,16 @@
         <div class="row flex-row justify-content-between" id="nav-footer"
              style="position: relative;background-color: rgba(82,170,75,0);min-height: 15%;max-height: 15%;width: 100%;margin-right: 0px;margin-left: 0px;">
             <div class="col d-flex flex-column justify-content-start align-items-start order-1 col-4">
-                <button class="btn btn-primary text-center d-flex justify-content-center" type="button" style="background-color: rgba(0,123,255,0);border: none;"><img id="settings-image" src="assets/img/Nav%20Icons/Nav-Settings.png">
+                <button class="btn btn-primary text-center d-flex justify-content-center" type="button"
+                        style="background-color: rgba(0,123,255,0);border: none;"><img id="settings-image"
+                                                                                       src="assets/img/Nav%20Icons/Nav-Settings.png">
                 </button>
             </div>
             <div class="col d-flex flex-column justify-content-start align-items-end order-1 col-4">
-                <button class="btn btn-primary text-center d-flex justify-content-center" type="button" data-toggle="modal" data-target="#info-modal"
-                        style="background-color: rgba(0,123,255,0);border: none;"><img id="info-image" src="assets/img/Nav%20Icons/Nav-Info.png">
+                <button class="btn btn-primary text-center d-flex justify-content-center" type="button"
+                        data-toggle="modal" data-target="#info-modal"
+                        style="background-color: rgba(0,123,255,0);border: none;"><img id="info-image"
+                                                                                       src="assets/img/Nav%20Icons/Nav-Info.png">
                 </button>
             </div>
         </div>
@@ -134,7 +141,8 @@
     </div>
 
     <!-- Game Info -->
-    <div class="modal fade shadow  justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center" v-if="this.state.localeCompare('menu') === 0"
+    <div class="modal fade shadow  justify-content-sm-center align-items-sm-center justify-content-md-center align-items-md-center"
+         v-if="this.state.localeCompare('menu') === 0"
          role="dialog" tabindex="-1" id="info-modal" style="color: rgb(255,255,255);height: 100%;">
         <div class="modal-dialog modal-sm" role="document"
              style="background-color: rgba(255,255,255,.2) !important;border: none;">
@@ -223,22 +231,23 @@
         <div class="text-center d-flex flex-column justify-content-center align-items-center" id="player-name"
              style="background-color: rgba(210,57,57,0);">
             <p class="id-label"
-               style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(255,255,255);">Player {{playerNumber}}</p>
+               style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(255,255,255);">Player
+                {{playerNumber}}</p>
             <p class="id-value"
                style="font-family: 'Didact Gothic', sans-serif;margin-bottom: 0px;color: rgb(255,255,255);font-size: 28px;">
-               {{playerName}}</p>
+                {{playerName}}</p>
         </div>
         <div class="d-flex align-items-md-center" id="control-buttons">
             <div class="col d-flex d-sm-flex align-items-center justify-content-sm-center align-items-md-center"
                  id="left-button-container" style="padding: 0px;height: 100%;width: 50%;">
-                <button class="btn" id="left-button"  v-on:click="buttonX" type="button"
+                <button class="btn" id="left-button" v-on:click="buttonX" type="button"
                         style="background-color: rgba(0,123,255,0);/*height: 80%;*//*width: 50%;*/"><img
                         src="assets/img/Game/Game-Button.png" style="max-width: 100%;max-height: 100%;width: 100%;">
                 </button>
             </div>
             <div class="col d-flex d-sm-flex align-items-center justify-content-sm-end justify-content-md-center align-items-md-center"
                  id="right-button-container" style="padding: 0px;height: 100%;width: 50%;">
-                <button class="btn btn-primary"  v-on:click="buttonY" id="right-button" type="button"
+                <button class="btn btn-primary" v-on:click="buttonY" id="right-button" type="button"
                         style="background-color: rgba(0,123,255,0);border: none;"><img
                         src="assets/img/Game/Game-Button.png" style="max-height: 100%;width: 100%;"></button>
             </div>
@@ -267,7 +276,8 @@
                 <div class="col text-center flex-column justify-content-center align-items-center"
                      style="width: 100%;height: 80%;max-width: 200%;padding: 0px;">
                     <p class="text-center"
-                       style="font-family: 'Didact Gothic', sans-serif;font-size: 19px;padding-top: 1%;"><strong>Tap the right and left buttons one after the other to run</strong></p>
+                       style="font-family: 'Didact Gothic', sans-serif;font-size: 19px;padding-top: 1%;"><strong>Tap the
+                        right and left buttons one after the other to run</strong></p>
                     <p class="text-center"
                        style="font-family: 'Didact Gothic', sans-serif;font-size: 19px;padding-top: 1%;"><strong>The
                         Stamina bar also determines your speed</strong><br></p>
@@ -296,7 +306,8 @@
         </div>
         <div class="row d-md-flex d-xl-flex align-items-xl-center" id="bottom-nav" style="width: 100%;">
             <div class="col col-10" id="quit-game-container">
-                <button class="btn d-md-flex" id="quit-game-button"  data-toggle="modal" data-target="#quit-menu-modal" type="button" style="border: none;"><img
+                <button class="btn d-md-flex" id="quit-game-button" data-toggle="modal" data-target="#quit-menu-modal"
+                        type="button" style="border: none;"><img
                         src="assets/img/Back%20Button.png" style="max-width: 100%;max-height: 100%;"></button>
             </div>
             <div class="col d-xl-flex justify-content-xl-end align-items-xl-center col-2"
@@ -316,7 +327,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/2.2.0/socket.io.js"></script>
 
 <script>
-
 
 
     var socket = null;
@@ -342,7 +352,6 @@
 
         methods: {
             gotoEnterCode() {
-                console.log("Enter code!")
                 this.state = "enter code"
             },
 
@@ -359,7 +368,6 @@
                 secondPart = ("000" + secondPart.toString(36)).slice(-3);
                 return firstPart + secondPart;
             },
-
 
 
             //------------ GAME FUNCTIONS----------
@@ -379,7 +387,7 @@
                 this.state = 'game';
             },
 
-            leaveGame(){
+            leaveGame() {
                 socket.emit('leaveRoom');
                 this.state = "enter code";
 
@@ -442,19 +450,17 @@
                     console.log("This is the next scene " + data);
 
                     states.state = "game";
-                    if(localStorage.firstPlay)
-                    {
+                    if (localStorage.firstPlay) {
                         console.log("We have it")
-                      //  localStorage.setItem("first-session", 1);
+                        //  localStorage.setItem("first-session", 1);
 
-                    }
-                    else{
+                    } else {
                         $("#game-tip-modal").modal();
 
                         localStorage.firstPlay = 1;
                         console.log("We dont have");
                     }
-                   // localStorage.setItem("lastname", "Smith");
+                    // localStorage.setItem("lastname", "Smith");
                 });
 
             },
@@ -532,15 +538,16 @@
 
             onHostDisconnected() {
                 var states = this;
-                socket.on('onHostDisconnected', function (data) {
-                    states.state = 'menu';
+                socket.on('hostDisconnected', function (data) {
+                    states.state = 'enter code';
+                    console.log("Host Disconnected")
                     socket.emit('leaveRoom');
                 });
             }
         },
 
         created: function () {
-            // socket = io("http://localhost:3000");
+            //socket = io("http://localhost:3000");
             socket = io("https://sticks-game-server.herokuapp.com/");
 
             this.state = "start";
