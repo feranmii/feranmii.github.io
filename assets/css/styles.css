@@ -85,7 +85,7 @@ body {
 
 @media (orientation: landscape) {
     #nav-header {
-        top: 0px;
+        /*top: 0px;*/
     }
 }
 
