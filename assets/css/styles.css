@@ -106,8 +106,7 @@ body {
 
 @media (orientation: landscape) {
     .olympian-logo {
-        float: right;
-
+        /*float: right;*/
         height: 100%;
         width: 100%;
     }
@@ -115,7 +114,7 @@ body {
 
 @media (orientation: portrait) {
     .olympian-logo {
-        float: right;
+        /*float: right;*/
         height: 100%;
         width: 100%;
     }
