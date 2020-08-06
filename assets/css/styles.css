@@ -108,8 +108,8 @@ body {
     .olympian-logo {
         float: right;
 
-        height: 12%;
-        width: 12%;
+        height: 24%;
+        width: 24%;
     }
 }
 
@@ -120,6 +120,7 @@ body {
         width: 55%;
     }
 }
+
 
 @media (orientation: portrait) {
     #load-button {
